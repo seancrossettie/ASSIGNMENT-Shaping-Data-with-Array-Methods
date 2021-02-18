@@ -170,3 +170,35 @@ manufacturingBusinesses.forEach(business => {
   `
   outEl.innerHTML += "<hr/>"
 });
+
+outEl.innerHTML += "<h1>Purchasing Agents</h1>";
+
+/*
+    Using map(), you extract the purchasing agent object
+    from each business and store it in a new array
+*/
+const agents = businesses.map(business => {
+
+  let phoneNumber = business.phoneWork;
+
+  if (business.phoneWork.includes("x") === true) {
+      phoneNumber = business.phoneWork.split(" x").shift(); 
+  } else {
+      phoneNumber = business.phoneWork;
+  }
+
+  return agent = { 
+           "fullName": `${business.purchasingAgent.nameFirst} ${business.purchasingAgent.nameLast}`,
+           "company": business.companyName,
+           "phoneNumber": phoneNumber,
+          }
+  })
+
+console.table(agents)
+
+agents.forEach(agent => {
+outEl.innerHTML += `<h2>${agent.fullName}</h2>
+                    <h3>${agent.company}</h3>
+                    <h4>${agent.phoneNumber}</h4>`;
+outEl.innerHTML += "<hr/>";
+});
